@@ -1,0 +1,48 @@
+# Ignorar archivos de registro y directorios
+**.log
+**.pyc
+**.pyo
+**.env*
+**.ini
+**.venv
+**trash/
+**__pycache__
+!.env-template
+**/*credential*
+# Ignorar archivos de configuración de IDE
+**.vscode/
+**.idea/
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+# Ignorar archivos de dependencias
+**node_modules/
+**vendor/
+# Ignorar archivos de compilación
+**dist/
+**build/
+# Ignorar archivos de cobertura de pruebas
+**coverage/
+# Ignorar archivos de configuración de herramientas de análisis estático
+**.eslintrc.json
+**.pylintrc
+# Ignorar archivos de configuración de herramientas de formateo
+**.prettierignore
+**.black
+# Ignorar archivos de configuración de herramientas de gestión de dependencias
+**package-lock.json
+**yarn.lock
+**Pipfile.lock
+
+#-----------------------------
+# Terraform
+#------------------------------
+# Ignorar estados de Terraform (contienen secretos en texto plano)
+**.tfstate
+**.tfstate.*
+# Ignorar variables sensibles
+**.tfvars
+# Ignorar archivos de registro y temporales
+**.terraform/
+warning.txt
+**desktop.ini

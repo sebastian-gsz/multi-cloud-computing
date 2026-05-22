@@ -1,0 +1,27 @@
+name: 'GCP Terraform Deploy'
+on:
+  push:
+    branches: [ "main" ]
+permissions:
+  contents: 'read'
+  id-token: 'write'
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/${{ secrets.GCP_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'sa-compute-terraform@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+      - name: Terraform Apply
+        run: |
+          terraform init
+          terraform apply -auto-approve \
+            -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
+            -var="admin_user=${{ secrets.ADMIN_USER }}" \
+            -var="region=${{ secrets.GCP_REGION }}"
